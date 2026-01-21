@@ -1,0 +1,216 @@
+{
+  "deck_name": "暗红恶魔",
+  "deck_type": "暗红恶魔",
+  "main_deck": [
+    {
+      "name": "效果遮蔽者",
+      "quantity": 2,
+      "category": "monster"
+    },
+    {
+      "name": "同步克隆共鸣者",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "深红共鸣者",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "视界共鸣者",
+      "quantity": 2,
+      "category": "monster"
+    },
+    {
+      "name": "红莲王炎罪",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "灰流丽",
+      "quantity": 2,
+      "category": "monster"
+    },
+    {
+      "name": "屋敷童子",
+      "quantity": 2,
+      "category": "monster"
+    },
+    {
+      "name": "魂灵共鸣者",
+      "quantity": 3,
+      "category": "monster"
+    },
+    {
+      "name": "执爱之轮回化勒",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "骸骨恶魔",
+      "quantity": 3,
+      "category": "monster"
+    },
+    {
+      "name": "重装百夫骑士 普利梅拉",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "从属百夫骑士 特露蒂亚",
+      "quantity": 2,
+      "category": "monster"
+    },
+    {
+      "name": "渊兽 玛格纳姆特",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "渊兽 德尔伊德布鲁姆",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "龙装百夫骑兵 卡戈尔II",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "原始生命态 尼比鲁",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "呼叫共鸣者",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "站起来吧，百夫骑士",
+      "quantity": 2,
+      "category": "monster"
+    },
+    {
+      "name": "深红地狱盖亚",
+      "quantity": 3,
+      "category": "monster"
+    },
+    {
+      "name": "起誓的徽纹",
+      "quantity": 1,
+      "category": "spell"
+    },
+    {
+      "name": "觉醒吧 百夫骑士",
+      "quantity": 1,
+      "category": "spell"
+    },
+    {
+      "name": "无限泡影",
+      "quantity": 2,
+      "category": "trap"
+    },
+    {
+      "name": "绯暗红陨雨",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "恶魔魔像",
+      "quantity": 1,
+      "category": "monster"
+    },
+    {
+      "name": "百夫骑士 魔防阵",
+      "quantity": 1,
+      "category": "trap"
+    },
+    {
+      "name": "恶魔锁链",
+      "quantity": 1,
+      "category": "trap"
+    },
+    {
+      "name": "绯暗红区域",
+      "quantity": 1,
+      "category": "trap"
+    }
+  ],
+  "extra_deck": [
+    {
+      "name": "暗红升龙",
+      "quantity": 2,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "带刃龙 卡伊贝尔特",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "暗红恶魔龙",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "暗红恶魔龙 荣光右痕",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "绯暗红恶魔",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "琰魔龙 暗红恶魔邃渊",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "淡魔龙 暗红恶魔彼列",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "鲜花之女男爵",
+      "quantity": 1,
+      "summon_type": "link"
+    },
+    {
+      "name": "神渊兽 迪斯帕忒尔",
+      "quantity": 1,
+      "summon_type": "xyz"
+    },
+    {
+      "name": "混沌天使 混元的双翼",
+      "quantity": 1,
+      "summon_type": "xyz"
+    },
+    {
+      "name": "宇宙耀变龙",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "绯暗红超新星龙",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "赤龙",
+      "quantity": 1,
+      "summon_type": "synchro"
+    },
+    {
+      "name": "百夫骑士皇 阿克斯拉",
+      "quantity": 1,
+      "summon_type": "synchro"
+    }
+  ],
+  "total_main": 40,
+  "total_extra": 15,
+  "created_at": "2026-01-21T01:26:28.102141"
+}

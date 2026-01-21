@@ -1,0 +1,54 @@
+# YGO Master Duel Bot 配置文件
+
+# 游戏设置
+game:
+  window_title: "masterduel"  # 实际的游戏窗口标题（从find_window.py获取）
+  process_name: "masterduel.exe"
+  target_resolution: [1920, 1080]
+  
+# 视觉识别设置
+vision:
+  ocr_language: "chi_sim+eng"  # 中文简体+英文
+  confidence_threshold: 0.75
+  template_match_threshold: 0.8
+  use_gpu: false  # 是否使用GPU加速
+  screenshot_interval: 0.1  # 截图间隔（秒）
+  
+# 操作控制设置
+control:
+  click_delay: [0.15, 0.35]  # 点击延迟范围（秒）
+  drag_duration: [0.3, 0.6]  # 拖拽持续时间范围
+  mouse_speed: "medium"  # slow, medium, fast
+  humanize: true  # 是否启用人性化操作
+  
+# 学习系统设置
+learning:
+  recording_enabled: true
+  recording_path: "data/recordings"
+  model_save_path: "data/models"
+  max_recording_length: 1000  # 最大录制步数
+  auto_save: true
+  
+# 决策引擎设置
+decision:
+  strategy: "hybrid"  # learned, rule_based, hybrid
+  use_llm: true  # 启用LLM智能决策
+  llm_model: "qwen2.5:7b"  # 使用qwen2.5作为主模型
+  llm_api_url: "http://localhost:11434"  # Ollama默认地址
+  confidence_threshold: 0.6
+  enable_chain_detection: true
+  think_time: [0.5, 1.5]  # 思考时间范围（秒）
+  
+# 自动化设置
+automation:
+  mode: "solo"  # solo, pvp, reward
+  auto_start: false
+  max_retries: 3
+  error_screenshot: true
+  
+# 日志设置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  save_logs: true
+  log_path: "logs"
+  max_log_size: 10485760  # 10MB

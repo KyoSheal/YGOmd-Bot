@@ -1,0 +1,111 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Yu-Gi-Oh Deck Schema",
+    "description": "标准化的卡组数据格式",
+    "type": "object",
+    "properties": {
+        "deck_name": {
+            "type": "string",
+            "description": "卡组名称"
+        },
+        "deck_type": {
+            "type": "string",
+            "description": "卡组类型，如：暗红恶魔、电子龙等"
+        },
+        "main_deck": {
+            "type": "array",
+            "description": "主卡组",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "卡片名称"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 3,
+                        "description": "卡片数量"
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "monster",
+                            "spell",
+                            "trap",
+                            "unknown"
+                        ],
+                        "description": "卡片类别"
+                    },
+                    "card_id": {
+                        "type": "string",
+                        "description": "卡片ID（可选）"
+                    },
+                    "archetype": {
+                        "type": "string",
+                        "description": "卡片系列（可选）"
+                    }
+                },
+                "required": [
+                    "name",
+                    "quantity",
+                    "category"
+                ]
+            }
+        },
+        "extra_deck": {
+            "type": "array",
+            "description": "额外卡组",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 3
+                    },
+                    "summon_type": {
+                        "type": "string",
+                        "enum": [
+                            "fusion",
+                            "synchro",
+                            "xyz",
+                            "link",
+                            "unknown"
+                        ],
+                        "description": "召唤类型"
+                    },
+                    "card_id": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "quantity"
+                ]
+            }
+        },
+        "total_main": {
+            "type": "integer",
+            "description": "主卡组总数"
+        },
+        "total_extra": {
+            "type": "integer",
+            "description": "额外卡组总数"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间"
+        }
+    },
+    "required": [
+        "deck_name",
+        "main_deck",
+        "extra_deck"
+    ]
+}
