@@ -1,137 +1,239 @@
-# YGO Master Duel 智能Bot
+# 🎮 Yu-Gi-Oh! Master Duel AI Bot
 
-一个能够学习和理解游戏王Master Duel的智能自动化bot，通过观察用户操作来学习展开combo，并理解卡片效果和连锁关系。
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## 🎯 项目特点
+An intelligent AI bot for Yu-Gi-Oh! Master Duel that learns from human gameplay through deep learning and LLM-powered analysis.
 
-- **智能学习**: 通过录制用户操作来学习游戏策略
-- **视觉识别**: 使用OpenCV和OCR识别游戏状态和卡片
-- **人性化操作**: 模拟真实玩家的鼠标键盘操作
-- **知识库系统**: 理解卡片效果和combo关系
-- **Solo模式自动化**: 从简单的Solo模式开始
+## ✨ Features
 
-## 🚀 快速开始
+### 🎮 多平台支持
+- **PC 版支持**: 通过 PyAutoGUI 控制 Steam 版 Master Duel
+- **Android 版支持**: 通过 ADB 控制模拟器中的 Master Duel（推荐）
+  - 更快的响应速度
+  - 更精确的触摸控制
+  - 更难被检测
+  - 参考 MaaAssistantArknights 架构设计
 
-### 1. 安装依赖
+### 🧠 Deep Learning Recording System
+- **Manual Gameplay Recording**: Record your gameplay sessions and let the AI learn from your strategies
+- **LLM-Powered Analysis**: Uses local LLM (Ollama) to understand tactical intent, combo patterns, and card synergies
+- **Multi-Path Learning**: Discovers multiple possible combo routes from the same hand
+- **Knowledge Base**: Builds a library of learned combos and patterns
 
-```bash
-pip install -r requirements.txt
-```
+### 📋 Deck Management
+- **Automatic Deck Parsing**: Converts deck lists to structured JSON format
+- **Card Categorization**: Auto-categorizes cards (monster/spell/trap) and extra deck summon types
+- **Deck Type Recognition**: Automatically identifies deck archetypes
 
-**注意**: 
-- 需要安装Tesseract OCR: https://github.com/tesseract-ocr/tesseract
-- 确保Python版本 >= 3.8
+### 👁️ Game State Detection
+- **Screen Capture**: Real-time game window capture
+- **UI Detection**: Detects game phases, LP, buttons, and card information panels
+- **OCR Integration**: Tesseract OCR for card name recognition
+- **Debug UI**: Real-time monitoring interface with screenshot display and recognition results (参考 MAA 设计)
 
-### 2. 配置设置
+### 🎯 Action Recording
+- **Operation Tracking**: Records card usage, effect activation, summons, and more
+- **Sequence Analysis**: Groups operations into meaningful combo sequences
+- **Replay System**: Saves recordings as JSON for later analysis
 
-编辑 `config/settings.yaml` 根据你的需求调整配置。
-
-### 3. 运行Bot
-
-```bash
-python main.py
-```
-
-## 📖 使用指南
-
-### 录制模式
-
-1. 启动游戏王Master Duel
-2. 运行Bot并选择"录制模式"
-3. 进入游戏并进行你的展开操作
-4. Bot会记录你的所有操作和游戏状态
-5. 按 Ctrl+C 停止录制并保存
-
-### 测试视觉系统
-
-选择"测试视觉系统"来验证Bot能否正确捕获游戏画面。
-
-## 🏗️ 项目结构
+## 📁 Project Structure
 
 ```
 YGO/
-├── src/
-│   ├── core/           # 核心引擎（游戏状态、决策引擎）
-│   ├── vision/         # 视觉识别（屏幕捕获、卡片识别、OCR）
-│   ├── control/        # 操作控制（鼠标、键盘）
-│   ├── knowledge/      # 知识库（卡片数据、效果、combo）
-│   ├── learning/       # 学习系统（录制、分析、模型）
-│   └── automation/     # 自动化流程（Solo模式、对战）
+├── config/
+│   └── settings.yaml          # Configuration settings
 ├── data/
-│   ├── cards/          # 卡片数据
-│   ├── templates/      # 图像模板
-│   ├── models/         # 训练模型
-│   └── recordings/     # 操作录制
-├── config/             # 配置文件
-├── logs/               # 日志文件
-├── main.py             # 主入口
-└── requirements.txt    # 依赖列表
+│   ├── combos/                # Learned combo patterns
+│   ├── replays/               # Recorded gameplay sessions
+│   ├── schemas/               # JSON schemas
+│   ├── templates/             # Card image templates
+│   └── standard_deck.json     # Converted deck file
+├── src/
+│   ├── automation/            # Auto-play execution
+│   ├── control/               # Mouse/keyboard control
+│   ├── core/                  # Core game state logic
+│   ├── data/                  # Data processing
+│   │   └── deck_converter.py  # Deck format converter
+│   ├── learning/              # AI learning modules
+│   │   ├── action_recorder.py # Gameplay recorder
+│   │   ├── action_schema.py   # Action data structures
+│   │   └── llm_engine.py      # LLM decision engine
+│   └── vision/                # Computer vision
+│       ├── master_duel_detector.py  # Game UI detector
+│       └── card_detector.py   # Card recognition
+├── tools/
+│   ├── manual_recorder_ui.py  # Recording GUI
+│   └── smart_deck_scanner.py  # Deck scanning tool
+├── main.py                    # Main entry point
+└── requirements.txt           # Dependencies
 ```
 
-## ⚙️ 核心模块
+## 🚀 Quick Start
 
-### 视觉识别系统
-- **屏幕捕获**: 使用Win32 API捕获游戏窗口
-- **卡片识别**: OpenCV模板匹配 + OCR
-- **状态检测**: 识别回合、阶段、按钮等UI元素
+### 新手推荐路径 🌟
 
-### 操作控制系统
-- **人性化移动**: 贝塞尔曲线模拟真实鼠标轨迹
-- **随机延迟**: 模拟人类反应时间
-- **智能点击**: 带有随机偏移的点击
+**使用雷电模拟器？直接看这里！**
 
-### 学习系统
-- **操作录制**: 记录鼠标、键盘和游戏状态
-- **模式识别**: 分析操作序列找出combo模式
-- **策略学习**: 从演示中学习决策
+📖 **[快速开始指南 - 雷电模拟器版](QUICK_START.md)** ⭐
 
-## 🔧 配置说明
+这个指南会带你：
+1. ✅ 5 分钟完成环境配置
+2. ✅ 2 分钟测试连接
+3. ✅ 1 分钟启动调试 UI
+4. ✅ 10 分钟制作识别模板
+5. ✅ 开始自动操作
 
-主要配置项（在 `config/settings.yaml` 中）：
+### Prerequisites
+
+- Python 3.10+
+- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) (for card name recognition)
+- [Ollama](https://ollama.ai/) (for LLM-powered analysis)
+- **选择一个平台**:
+  - **PC 版**: Yu-Gi-Oh! Master Duel (Steam version)
+  - **Android 版** (推荐): Android 模拟器 (BlueStacks 5 / MuMu 12 / 雷电模拟器)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/YGO.git
+cd YGO
+
+# Install dependencies
+pip install -r requirements.txt
+
+# (推荐) 安装 pure-python-adb 以获得更好的 Android 控制性能
+pip install pure-python-adb
+
+# Install Tesseract OCR (Windows)
+# Download from: https://github.com/UB-Mannheim/tesseract/wiki
+# Add to PATH and install Chinese language pack
+
+# Install Ollama and download a model
+# https://ollama.ai/
+ollama pull qwen2.5:7b
+```
+
+### Android 模拟器设置 (推荐)
+
+如果你想使用 Android 版（更快、更稳定、更难被检测），请查看详细指南：
+
+📖 **[Android 模拟器设置指南](ANDROID_SETUP_GUIDE.md)**
+
+快速开始：
+```bash
+# 1. 安装并启动模拟器（BlueStacks 5 / MuMu 12）
+# 2. 在模拟器中安装 Master Duel
+# 3. 开启 ADB 调试
+# 4. 运行测试
+python src/control/adb_controller.py
+```
+
+### Usage
+
+#### 1. Convert Your Deck
+Create a `Deck.json` file with your deck list, then convert it:
+
+```bash
+python src/data/deck_converter.py
+```
+
+#### 2. Start the Debug UI (推荐)
+实时查看截图和识别结果：
+
+```bash
+python debug_ui.py
+```
+
+功能特性：
+- 📷 实时截图显示
+- 🔍 识别结果展示（场景、卡片、OCR）
+- 🐛 调试信息和日志输出
+- ⚙️ 设备和识别设置
+
+详细说明请查看 [调试 UI 使用指南](DEBUG_UI_GUIDE.md)
+
+#### 3. Start the Recording UI
+```bash
+python tools/manual_recorder_ui.py
+```
+
+#### 4. Record Your Gameplay
+1. Open Yu-Gi-Oh! Master Duel
+2. Click "▶ 开始录制" to start recording
+3. Play the game normally
+4. Click "⏸ 停止录制" when done
+5. Use "分析当前序列" for LLM analysis
+
+## 📖 Documentation
+
+- [调试 UI 使用指南](DEBUG_UI_GUIDE.md) - **新功能！实时监控和调试**
+- [Android 模拟器设置指南](ANDROID_SETUP_GUIDE.md) - **推荐！使用 Android 版获得更好的体验**
+- [Android 迁移计划](ANDROID_MIGRATION_PLAN.md) - 从 PC 版迁移到 Android 版
+- [Deep Learning System Guide](DEEP_LEARNING_SYSTEM.md) - Detailed usage instructions
+- [LLM Integration Guide](LLM_GUIDE.md) - How to configure and use the LLM engine
+- [Tesseract Installation](TESSERACT_INSTALL.md) - OCR setup guide
+
+## 🔧 Configuration
+
+Edit `config/settings.yaml` to customize:
 
 ```yaml
 game:
-  window_title: "Yu-Gi-Oh! Master Duel"  # 游戏窗口标题
+  window_title: "Yu-Gi-Oh! MASTER DUEL"
+  resolution: [1920, 1080]
 
-vision:
-  ocr_language: "chi_sim+eng"  # OCR语言
-  confidence_threshold: 0.75   # 识别置信度
+llm:
+  model: "qwen2.5:7b"
+  api_url: "http://localhost:11434"
 
-control:
-  click_delay: [0.15, 0.35]   # 点击延迟范围
-  humanize: true               # 启用人性化操作
-
-learning:
-  recording_enabled: true      # 启用录制
-  recording_path: "data/recordings"
+recording:
+  detection_interval: 0.5
+  action_cooldown: 1.0
 ```
 
-## 🎮 开发路线
+## 🎲 Supported Features
 
-- [x] 项目基础架构
-- [x] 屏幕捕获模块
-- [x] 鼠标控制模块
-- [x] 操作录制系统
-- [ ] 卡片识别模块
-- [ ] OCR文字识别
-- [ ] 游戏状态分析
-- [ ] 决策引擎
-- [ ] Solo模式自动化
-- [ ] 卡片知识库
-- [ ] 学习系统优化
+| Feature | PC Version | Android Version |
+|---------|------------|-----------------|
+| Deck Conversion | ✅ Complete | ✅ Complete |
+| Manual Recording | ✅ Complete | ✅ Complete |
+| LLM Analysis | ✅ Complete | ✅ Complete |
+| UI Detection | ✅ Complete | 🔧 In Progress |
+| OCR Recognition | 🔧 In Progress | 🔧 In Progress |
+| Input Control | ⚠️ PyAutoGUI | ✅ ADB + Touch |
+| Auto-Play | 🚧 Planned | 🚧 Planned |
+| Detection Avoidance | ⚠️ Medium | ✅ High |
 
-## ⚠️ 免责声明
+## 🤝 Contributing
 
-本项目仅供学习研究使用。使用自动化工具可能违反游戏服务条款，可能导致账号被封禁。请谨慎使用，风险自负。
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📝 许可证
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-本项目采用MIT许可证。
+## ⚠️ Disclaimer
 
-## 🤝 贡献
+This project is for educational purposes only. Use at your own risk. The developers are not responsible for any consequences of using this software, including but not limited to account bans.
 
-欢迎提交Issue和Pull Request！
+## 📄 License
 
-## 📞 联系方式
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-如有问题或建议，请提交Issue。
+## 🙏 Acknowledgments
+
+- [MaaAssistantArknights](https://github.com/MaaAssistantArknights/MaaAssistantArknights) - Android control architecture inspiration
+- [MaaFramework](https://github.com/MaaXYZ/MaaFramework) - Automation framework reference
+- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) - OCR engine
+- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) - Chinese OCR
+- [Ollama](https://ollama.ai/) - Local LLM runtime
+- [pure-python-adb](https://github.com/Swind/pure-python-adb) - Python ADB implementation
+- Konami - Yu-Gi-Oh! Master Duel
+
+---
+
+**Note**: This is an ongoing project. Features are continuously being improved and added.

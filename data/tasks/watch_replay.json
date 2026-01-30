@@ -1,0 +1,86 @@
+{
+  "WatchReplay_FindDuelLive": {
+    "algorithm": "MatchTemplate",
+    "template": "duel_live_button.png",
+    "roi": [0, 50, 450, 300],
+    "action": "DoNothing",
+    "next": ["WatchReplay_ClickDuelLive"],
+    "maxTimes": 1,
+    "templThreshold": 0.75,
+    "preDelay": 500,
+    "postDelay": 200,
+    "onErrorNext": ["WatchReplay_ClickRightArrow"]
+  },
+  
+  "WatchReplay_ClickRightArrow": {
+    "algorithm": "MatchTemplate",
+    "template": "main_right_arrow.png",
+    "roi": [300, 100, 200, 200],
+    "action": "ClickSelf",
+    "next": ["WatchReplay_FindDuelLive"],
+    "maxTimes": 10,
+    "templThreshold": 0.75,
+    "preDelay": 300,
+    "postDelay": 800
+  },
+  
+  "WatchReplay_ClickDuelLive": {
+    "algorithm": "MatchTemplate",
+    "template": "duel_live_button.png",
+    "roi": [0, 50, 450, 300],
+    "action": "ClickSelf",
+    "next": ["WatchReplay_WaitReplayScreen"],
+    "maxTimes": 1,
+    "templThreshold": 0.75,
+    "preDelay": 500,
+    "postDelay": 3000
+  },
+  
+  "WatchReplay_WaitReplayScreen": {
+    "algorithm": "MatchTemplate",
+    "template": "replay_settings_gear.png",
+    "roi": [0, 0, 200, 150],
+    "action": "DoNothing",
+    "next": ["WatchReplay_ClickGear"],
+    "maxTimes": 30,
+    "templThreshold": 0.75,
+    "preDelay": 500,
+    "postDelay": 500
+  },
+  
+  "WatchReplay_ClickGear": {
+    "algorithm": "MatchTemplate",
+    "template": "replay_settings_gear.png",
+    "roi": [0, 0, 200, 150],
+    "action": "ClickSelf",
+    "next": ["WatchReplay_ClickEndReplay"],
+    "maxTimes": 1,
+    "templThreshold": 0.75,
+    "preDelay": 500,
+    "postDelay": 1000
+  },
+  
+  "WatchReplay_ClickEndReplay": {
+    "algorithm": "MatchTemplate",
+    "template": "end_replay_button.png",
+    "roi": [700, 0, 300, 150],
+    "action": "ClickSelf",
+    "next": ["WatchReplay_ConfirmYes"],
+    "maxTimes": 1,
+    "templThreshold": 0.75,
+    "preDelay": 500,
+    "postDelay": 1000
+  },
+  
+  "WatchReplay_ConfirmYes": {
+    "algorithm": "MatchTemplate",
+    "template": "confirm_yes_button.png",
+    "roi": [1100, 50, 600, 200],
+    "action": "ClickSelf",
+    "next": [],
+    "maxTimes": 1,
+    "templThreshold": 0.75,
+    "preDelay": 500,
+    "postDelay": 2000
+  }
+}
